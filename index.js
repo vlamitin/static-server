@@ -16,7 +16,7 @@ if (withHttps) {
     // to redirect to https
     server.get('*', (req, res, next) => {
         if (req.protocol === 'http') {
-	    res.redirect('https://' + req.headers.host.replace(/:\d{1,}$/, ''));
+	    res.redirect('https://' + req.headers.host.replace(/:\d{1,}$/, '') + req.originalUrl);
 	}
 	else {
 	    next();
