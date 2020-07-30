@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "http-proxy-middleware": "^1.0.5",
     "minimist": "^1.2.0"
   }
 }

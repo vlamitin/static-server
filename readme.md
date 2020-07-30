@@ -1,1 +1,1 @@
-node index.js --port=3002 --build="path/to/build/dir" [--publicCert="path/to/pub.pem" --privateCert="path/to/priv.pem"]
+node index.js --port=3002 --build="path/to/build/dir" [--publicCert="path/to/pub.pem" --privateCert="path/to/priv.pem" --proxyPattern "/api" --proxyPath "https://my-api.com"]

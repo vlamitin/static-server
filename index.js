@@ -3,6 +3,7 @@ const express = require('express');
 const http = require ('http');
 const https = require('https');
 const fs = require('fs');
+const hpm = require('http-proxy-middleware');
 
 const server = express();
 const defaultBuildPath = path.join(__dirname, './build');
@@ -32,6 +33,13 @@ server.all('*', (req, res, next) => {
     next();
 });
 
+if (args.proxyPattern && args.proxyPath) {
+    server.use(args.proxyPattern, hpm.createProxyMiddleware({
+        target: args.proxyPath,
+        changeOrigin: true
+    }))
+}
+
 // to handle all routing on client
 server.get('*', (req, res, next) => {
     res.sendFile(buildPath + '/index.html');
@@ -50,4 +58,3 @@ if (withHttps) {
         }, server)
 	.listen(443, () => console.log('Static Server is running https on port: 443'));
 }
-
